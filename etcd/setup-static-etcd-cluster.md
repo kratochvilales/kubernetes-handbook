@@ -10,14 +10,14 @@ We are going to setup a 3-node static TLS secured etcd cluster by using self sig
 | 192.168.1.101	| etcd3     |
 
 ## Install etcd
-Go to [https://github.com/coreos/etcd/releases](etcd)'s official release page and download the latest etcd version. This tutorial uses v3.2.9. 
+Go to [https://github.com/coreos/etcd/releases](etcd)'s official release page and download the latest etcd version. This tutorial uses v3.4.7. 
 
 > Note: please be aware that domain names/hostnames are not allowed for some of the flags such as `listen-peer-urls` so please only use IP Addresses to bootstrap the static cluster.
 
 ```shell
-$ curl -O -L https://github.com/coreos/etcd/releases/download/v3.2.9/etcd-v3.2.9-linux-amd64.tar.gz
-$ tar -xzvf etcd-v3.2.9-linux-amd64.tar.gz -C etcd
-$ sudo cp etcd/etcd-v3.2.9-linux-amd64/etcd* /usr/k8s/bin
+$ curl -O -L https://github.com/etcd-io/etcd/releases/download/v3.4.7/etcd-v3.4.7-linux-amd64.tar.gz
+$ tar -xzvf etcd-v3.4.7-linux-amd64.tar.gz -C etcd
+$ sudo cp etcd/etcd-v3.4.7-linux-amd64/etcd* /usr/k8s/bin
 ```
 
 Before we setup a TLS secured cluster, we can quickly bootstrap a cluster without TLS to make sure the network is not blocked by firewalls on each node. Start etcd with following options on each node:
