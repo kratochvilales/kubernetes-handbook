@@ -73,7 +73,66 @@ cd ~/cfssl
 cfssl print-defaults config > ca-config.json
 cfssl print-defaults csr > ca-csr.json
 ```
-Generate a root certificate first, as we are going to use the root certificate to sign other certificates
+###Change defauls according to your needs###
+ca-csr.json
+```
+{
+    "CN": "My own CA",
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "US",
+            "L": "CA",
+            "O": "My Company Name",
+            "ST": "San Francisco",
+            "OU": "Org Unit 1",
+            "OU": "Org Unit 2"
+        }
+    ]
+}
+```
+and 
+ca-config.json
+```{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            },
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+```
+
+###Generate a root certificate first, as we are going to use the root certificate to sign other certificates###
 
 ```shell
 cfssl gencert --initca=true ca-csr.json | cfssljson --bare etcd-root-ca
