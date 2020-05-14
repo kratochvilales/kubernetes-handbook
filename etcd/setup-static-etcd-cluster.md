@@ -65,7 +65,14 @@ $ curl -s -L -o bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 $ chmod +x bin/{cfssl,cfssljson}
 $ export PATH=$PATH:bin
 ```
+Initialize a certificate authority
 
+```
+mkdir ~/cfssl
+cd ~/cfssl
+cfssl print-defaults config > ca-config.json
+cfssl print-defaults csr > ca-csr.json
+```
 Generate a root certificate first, as we are going to use the root certificate to sign other certificates
 
 ```shell
