@@ -73,7 +73,7 @@ cd ~/cfssl
 cfssl print-defaults config > ca-config.json
 cfssl print-defaults csr > ca-csr.json
 ```
-## Change defauls according to your needs
+### Change defauls according to your needs
 ca-csr.json
 ```
 {
