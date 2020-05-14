@@ -73,7 +73,7 @@ cd ~/cfssl
 cfssl print-defaults config > ca-config.json
 cfssl print-defaults csr > ca-csr.json
 ```
-###Change defauls according to your needs###
+## Change defauls according to your needs
 ca-csr.json
 ```
 {
@@ -95,6 +95,7 @@ ca-csr.json
 }
 ```
 and 
+
 ca-config.json
 ```{
     "signing": {
@@ -132,7 +133,7 @@ ca-config.json
 }
 ```
 
-###Generate a root certificate first, as we are going to use the root certificate to sign other certificates###
+### Generate a root certificate first, as we are going to use the root certificate to sign other certificates
 
 ```shell
 cfssl gencert --initca=true ca-csr.json | cfssljson --bare etcd-root-ca
